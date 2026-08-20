@@ -1,0 +1,23 @@
+z=int(input('Number z: '))
+y=int(input('Number y: '))
+print('+ ',y+z)
+print('- ',y-z)
+print('* ',y*z)
+print('/ ',y/z)
+print('// ',y//z)
+print('% ',y%z)
+print('** ',y**z)
+print('and ',y and z)
+print('z << y ',z << y)
+print('z >> y ',z >> y)
+print (z>y)
+print (z<y)
+print (z==y)
+
+print(len('Manfred')>len('hanno'))
+A = 7
+print(A is 7)
+a , b =True ,True
+print (a ^ b)
+testlist=["a","b","c","x"]
+print("a" in testlist)
