@@ -56,6 +56,20 @@ print(b)
 print(c)
 print(d)
 print(f"Tupeltest: {tupeltest}")
+#Elemente zählen
+z=tupeltest.count(3)
+print(f"count 3: {z}")
+#1. Index eines Elements ermitteln
+z=tupeltest.index(7)
+print(f"index 7: {z}")
+tplMetalle=('Gold','Silber','Mercury','Eisen')
+tplOrdnungsz=(79,47,80,26)
+#zip gibt zip Object zurück
+Zwischenergebnis=(zip(tplMetalle,tplOrdnungsz))
+print('Typ: Zip ',type(Zwischenergebnis))
+#in list casten
+Periodens=list(Zwischenergebnis)
+print(Periodens)
 
 
 '''Merksatz
