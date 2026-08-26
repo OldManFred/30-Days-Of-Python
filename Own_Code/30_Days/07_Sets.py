@@ -39,7 +39,7 @@ print(myset|myset1)#oder myset.union(myset1)
 print(myset)
 print(myset1)
 #Einfügen eines sets in ein anderes
-myset1.update(myset)
+myset1.update(myset)#update nimmt Liste oder Set
 print(type(myset),myset1,'len:',len(myset1))
 myset.clear()
 myset={'Erde','Feuer','Luft'}
@@ -57,8 +57,8 @@ if myset1.issubset(myset): #Alles von myset1 muss in myset vorkommen
     print('issubset')
 if myset.issuperset(myset1): # myset muss alles von myset1 enthalten
     print('issuperset')
-print(myset.difference(myset1))#Welche Items von myset sind nicht in myset1
-print(myset1.difference(myset))#Welche Items von myset1 sind nicht in myset
+print('difference',myset.difference(myset1))#Welche Items von myset sind nicht in myset1
+print('difference',myset1.difference(myset))#Welche Items von myset1 sind nicht in myset
 print('symmetric_difference: ',myset1.symmetric_difference(myset))#Welche Items sind nur in jeweils einem Set vorhanden ?
 #Haben die Sets gemeinsame Items ?
 myset.clear()
@@ -68,3 +68,16 @@ myset1={13,21,34}#keine gleichen Items in beiden sets
 print('disjoint: ',myset.isdisjoint(myset1))
 myset1.add(8)#Item in beiden Sets
 print('disjoint: ',myset.isdisjoint(myset1))
+myset2={'Wasser','Erde','Feuer'}
+print('Len: ',len(myset2))
+myset2.update(['Eisen','Schwefel'])
+print(myset2,'Len: ',len(myset2))
+myset2.discard('Erde')
+print(myset2,'Len: ',len(myset2))
+myset3={'Kobald','Kohle'}
+myset2.update(myset3)
+print(myset2)
+print(myset3.issubset(myset2))
+print(myset2.issuperset(myset3))
+print(myset2.isdisjoint(myset3))#komplett unterschiedlich
+print(myset3.intersection(myset2))#Welche in Beiden
