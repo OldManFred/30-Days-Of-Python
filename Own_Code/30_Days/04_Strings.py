@@ -79,3 +79,6 @@ text='1984'
 print('isdecimal',text.isdecimal()) #0...9
 text='1984²'
 print('isdigit',text.isdigit()) #0...9 und einige Charactes
+phrase='Hallo ich bin Manfred'
+Woerter=phrase.split(' ')#am Leerzeichen auftrennen, splitberzeugt Liste
+print('Type: ',type(Woerter),(Woerter))

@@ -1,5 +1,5 @@
 #tupel
-tpl1=('Brot','Kaese','Wurst','Schinken')
+tpl1=('Brot','Kaese','Wurst','Schinken')#unveränderlich
 print(type(tpl1))
 print(tpl1)
 print('Items: ',len(tpl1))

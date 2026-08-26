@@ -43,7 +43,7 @@ myset1.update(myset)#update nimmt Liste oder Set
 print(type(myset),myset1,'len:',len(myset1))
 myset.clear()
 myset={'Erde','Feuer','Luft'}
-myset1.clear
+myset1.clear()
 myset1={'Wasser','Luft','Erde'}
 #In beiden Sets vorkommende Items als Set
 result=myset&myset1 #Oder myset.intersection(myset1)
@@ -66,18 +66,32 @@ myset1.clear()
 myset={2,3,5,8}
 myset1={13,21,34}#keine gleichen Items in beiden sets
 print('disjoint: ',myset.isdisjoint(myset1))
-myset1.add(8)#Item in beiden Sets
+myset1.add(8)#Item jetzt in beiden Sets
 print('disjoint: ',myset.isdisjoint(myset1))
 myset2={'Wasser','Erde','Feuer'}
 print('Len: ',len(myset2))
-myset2.update(['Eisen','Schwefel'])
+myset2.update(['Eisen','Schwefel'])#Listenelemente zu Set hinzufügen
 print(myset2,'Len: ',len(myset2))
-myset2.discard('Erde')
+myset2.discard('Erde')# Löschen ohne Risiko von Fehler
 print(myset2,'Len: ',len(myset2))
 myset3={'Kobald','Kohle'}
 myset2.update(myset3)
+for item in myset2:
+    print(item)
 print(myset2)
-print(myset3.issubset(myset2))
-print(myset2.issuperset(myset3))
+print(myset3.issubset(myset2)) #3 ist Teilmenge von 2
+print(myset2.issuperset(myset3)) #2 enthält mindestens das komplette 3
 print(myset2.isdisjoint(myset3))#komplett unterschiedlich
 print(myset3.intersection(myset2))#Welche in Beiden
+ageList = [22, 19, 24, 25, 26, 24, 25, 24]
+ageSet=set(ageList)#Liste in Set wandeln und zuweisen
+print('ageList',ageList,'Len: ',len(ageList))
+print('ageSet',ageSet,'Len: ',len(ageSet))#kürzer, da doppelte Einträge entfernt
+phrase='I am a teacher and I love to inspire and teach people' #String erzeugen
+#erzeugt Liste, funzt nur bei genau ' '
+Woerter=phrase.split(' ')#split Methode von Strings zum Trennen am Leerzeichen nutzen
+del Woerter
+Woerter=phrase.split(' ')#besser, versteht mehrere Trennzeichen, '   ', Tab, \n
+print(Woerter,type(Woerter),'len: ',len(Woerter))
+Words=set(Woerter)#Typecast
+print(Words,type(Words),'len: ',len(Words))#unique items only
