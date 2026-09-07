@@ -137,6 +137,8 @@ for nDict in countries_data:#durch alle Dicts in Liste countries_data iterieren
             dictLanguages[lang]=1   #Eintrag Schlüssel 'z.B.Pashtu' anlegen und auf 1 setzen
 print(f'Anzahl Sprachen: {len(dictLanguages)}')
 #10 häufigste Sprachen ermitteln aus dictLanguages und Anzeigen
+'''
+#komplizierte Methode mit einzelnen Durchläufen:
 for i in range(10):#10 Durchläufe, 10 häufigste Sprachen anzeigen
     count_langu=1#Zähler zurücksetzen
     name_langu='' #Name der Sprache
@@ -146,8 +148,17 @@ for i in range(10):#10 Durchläufe, 10 häufigste Sprachen anzeigen
             name_langu=lang#Name dazu speichern
     print(f'Sprache: {name_langu} Anzahl: {count_langu}')#Aktuelle Höchstzahl anzeigen
     dictLanguages.pop(name_langu) #Sprache mit höchstzahl entfernen vor neuem Durchlauf 
+'''
 
-dict_popu={} #neues Dictionary anlegen mit 'Land':Bevölkerung
+#dict.items() gibt eine View von Tupeln mit (Schlüssel,Wert) aus dem Dict zurück
+#sorted gibt eine sortierte Liste der Tupel zurück. Key bestimmt das Sortierkriterium
+lst_languages=sorted(dictLanguages.items(),key=lambda x: x[1],reverse=True)
+for n in range(10):
+    name_langu,count_langu=lst_languages[n]
+    print(f'Sprache: {name_langu} Vorkommen: {count_langu}')
+''' 
+   #komplizierte Methode mit einzelnen Durchläufen
+dict_popu={} #neues Dictionary anlegen mit 'Land':Bevölkerungszahl
 for nDict in countries_data: #durch alle dicts in Liste iterieren
     #neues Dictionary mit Werten aus Dictionaries in Liste füllen, Name und Einwohner
     dict_popu[nDict.get('name')] = nDict.get('population')#Dictionaryeintrag anlegen
@@ -160,4 +171,12 @@ for i in range(10): #10 Durchläufe
             max_popu_country=country
     print(f'Land: {max_popu_country} Einwohner: {max_popu}')
     dict_popu.pop(max_popu_country)
+'''
+#sorted gibt eine Liste zurück, diesmal von Dictionaries. Sortierkriterium ist population
+#Trotzdem #
+
+lst_population=sorted(countries_data,key=lambda land: land['population'],reverse=True )
+print(f'Dictionary von sorted: {lst_population[0]}')
+for land in lst_population[0:10]:#land enthält also diesmal ein Dictionary, slicing für 10 Datensätze
+    print(f"Country:{land['name']} Capital: {land['capital']} Population: {land['population']}")#verschiedene " ' ' " verwenden
     

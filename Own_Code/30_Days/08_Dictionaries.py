@@ -7,7 +7,7 @@ if 'Age' in myDict:#Vorher abfragen....
    print('Alter',myDict['Age'])
 else:
     print('Ageless')
-print('Alter',myDict.get('Lastname'))#...oder kein Fehler sondern None bei .get()
+print('Nachname',myDict.get('Lastname'))#...oder kein Fehler sondern None bei .get()
 myDict['Adress']={'Street':'Habsburgerstr','Number':4,'Zip':10115}#Hinzufügen, kann Dict. enthalten
 print(myDict.get('Adress'))#ganzes Dict auslesen
 print(myDict.get('Adress')['Street'],myDict.get('Adress')['Number'])#Dict_in_Dict zugriff über Schlüssel in innerem Dict
