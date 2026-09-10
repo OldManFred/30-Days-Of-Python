@@ -10,6 +10,16 @@ sys.path.append(parent_pfad)#Damit Python hier sucht bei import
 from data.countries import countries
 from data.countries_working_file import countries_data
 
+
+def generate_country_dict(lst_country_data):
+    gen_dictionary={}   #Dict erstellen...
+    #Aus der Liste mit Dictionaries aller Länder ein Dictionary machen da schneller durchsuchbar
+    for land in lst_country_data:#Liste aller Dicts iterieren land ist dict
+  #namen aus Länderdict holen, dann unter diesem Namen (Schlüssel) das ganze Dict im äusseren Dict speichern      
+        gen_dictionary[land['name']] = land #Dict füllen...
+    return gen_dictionary #...und zurückgeben
+
+
 def is_there_such_country(country):
     if country in countries:
         print(country)
@@ -21,29 +31,44 @@ def find_capital(country):
         return all_countries[country]['capital']
     return 'No result'
 
-def generate_country_dict(lst_country_data):
-    gen_dictionary={}   #Dict erstellen...
-    #Aus der Liste mit Dictionaries aller Länder ein Dictionary machen da schneller durchsuchbar
-    for land in lst_country_data:#Liste aller Dicts iterieren
-  #namen aus Länderdict holen, dann unter diesem Namen das ganze Dict im äusseren Dict speichern      
-        gen_dictionary[land['name']] = land #Dict füllen...
-    return gen_dictionary #...und zurückgeben
+def find_info(what_country,what_info='capital'):#capital ist default value
+    if what_country in all_countries:#äusseres Dict durchsuchen
+        if what_info in all_countries[country]:#inneres Dict durchsuchen
+            return what_country,all_countries[what_country][what_info] #zwei Werte zurückgeben
+        else:
+            return 'No_info for', (f'for {what_country}')
+    else:
+        return 'country', 'not found' #zwei Werte zurückgeben
+
 
 if __name__ == "__main__": #guard
-    {}  #neues Dict erstellen
     all_countries = generate_country_dict(countries_data)#Funktionsaufruf, Liste übergeben, Dict zurück
 
     while True:
-        cap_country=input('Enter country: ')
-        print(f'Input: {cap_country}')
-        if cap_country.lower() == 'exit':
+        country=input('Enter country: ')
+        print(f'Input: {country}')
+        if country.lower() == 'exit':
             print('Break!')
             break
-        is_there_such_country(cap_country) #Funktionsaufruf
+        info=input('Enter info: ')
+        #is_there_such_country(cap_country) #Funktionsaufruf
        
-        result=find_capital(cap_country)#Funktionsaufruf
+        '''result=find_capital(cap_country)#Funktionsaufruf
         print(f'result: {result}')
-        if result != 'No result':
-            print(f'Country: {cap_country} capital: {result}')
+         if result != 'No result':
+                    print(f'Country: {cap_country} capital: {result}')
+                else:
+                    print(result)'''
+        #print(find_info(country,info))#Funktionsaufruf einfach
+        
+        #Funktionsaufruf mit Rückgabe, bei Angabe der Parameternamen ist Reihenfolge egal
+        if info!='':
+            result_country,result_info=find_info(what_info=info,what_country=country)
         else:
-            print(result)
+            result_country,result_info=find_info(what_country=country)
+        if result_country=='country' and result_info=='not found':
+            print((f'Country: {result_country} {result_info}'))
+        else:
+            print(f'Country: {result_country} {info}: {result_info}')
+        
+       
