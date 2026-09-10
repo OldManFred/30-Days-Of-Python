@@ -16,7 +16,7 @@ def generate_country_dict(lst_country_data):
     #Aus der Liste mit Dictionaries aller Länder ein Dictionary machen da schneller durchsuchbar
     for land in lst_country_data:#Liste aller Dicts iterieren land ist dict
   #namen aus Länderdict holen, dann unter diesem Namen (Schlüssel) das ganze Dict im äusseren Dict speichern      
-        gen_dictionary[land['name']] = land #Dict füllen...
+        gen_dictionary[land['name']] = land #Dict füllen...mit Dicts
     return gen_dictionary #...und zurückgeben
 
 
@@ -33,10 +33,10 @@ def find_capital(country):
 
 def find_info(what_country,what_info='capital'):#capital ist default value
     if what_country in all_countries:#äusseres Dict durchsuchen
-        if what_info in all_countries[country]:#inneres Dict durchsuchen
+        if what_info in all_countries[what_country]:#inneres Dict durchsuchen
             return what_country,all_countries[what_country][what_info] #zwei Werte zurückgeben
         else:
-            return 'No_info for', (f'for {what_country}')
+            return 'No_info ', (f'for {what_country}')#zwei Werte zurückgeben
     else:
         return 'country', 'not found' #zwei Werte zurückgeben
 
@@ -51,6 +51,7 @@ if __name__ == "__main__": #guard
             print('Break!')
             break
         info=input('Enter info: ')
+        
         #is_there_such_country(cap_country) #Funktionsaufruf
        
         '''result=find_capital(cap_country)#Funktionsaufruf
@@ -65,7 +66,7 @@ if __name__ == "__main__": #guard
         if info!='':
             result_country,result_info=find_info(what_info=info,what_country=country)
         else:
-            result_country,result_info=find_info(what_country=country)
+            result_country,result_info=find_info(what_country=country)#what_info wird durch default ersetzt
         if result_country=='country' and result_info=='not found':
             print((f'Country: {result_country} {result_info}'))
         else:
