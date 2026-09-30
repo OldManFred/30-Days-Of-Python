@@ -1,12 +1,27 @@
 import sys
 import os
+from pathlib import Path #anstatt os für Path nuztbar
+
+'''
+#Variante mit os
 pfad = __file__ #aktuellen pfad/filename
 pfad = os.path.abspath(pfad)    #in absoluten Pfad wandeln
 print(f'Pfad to file: {pfad}')
-parent_pfad = os.path.join(pfad,'..','..','..')#zwei Ebenen hochgehen, da ist der Ordner
+parent_pfad = os.path.join(pfad,'..','..','..')#drei Ebenen hochgehen, da ist der Ordner
 parent_pfad=os.path.normpath(parent_pfad)
 print(f'Pfad to add: {parent_pfad}')
 sys.path.append(parent_pfad)#Damit Python hier sucht bei import
+'''
+#Variante mit pathlib
+pfad=Path(__file__).resolve()#objekt erstellen und auf __file__ setzen
+#3 Ebenen rauf
+parent_pfad=pfad.parents[2] #Listenähnliche Sammlung von Elternordnern, parents[0] wäre direkter Elternordner
+print(type(parent_pfad))#achtung, ist noch kein string
+print(f'Pfad to add: {str(parent_pfad)}')
+sys.path.append(str(parent_pfad))   #sys.path.append erwartet String
+
+
+
 from data.countries import countries
 from data.countries_working_file import countries_data
 

@@ -1,3 +1,13 @@
+import sys
+import os
+#Pfad zu 'data' zur Path Variable hinzufügen
+Pfad=__file__ #__file__ enthält relativer oder absoluter Pfad zum Script
+Pfad=os.path.abspath(Pfad) #in absoluten Pfad wandeln
+DirPfad=os.path.dirname(Pfad)#Filenamen abtrennen
+ParentDirPfad=os.path.join(DirPfad,'..','..')#Zwei Verzeichnisebenen nach oben anhängen
+ParentDirPath=os.path.normpath(ParentDirPfad)#evtl in Normpfad wandeln, nicht unb. nötig
+print(f'Pfad: {ParentDirPath}')
+sys.path.append(ParentDirPath)# Pfad nun in Path aufnehmen
 #Funktion mit variabler Anzahl Argumente
 def add_all_nums(*nummern):
     a=0
@@ -43,6 +53,18 @@ def is_prime(what_number):
         if what_number%i==0:
             is_number_prime=False
     return is_number_prime
+
+def is_unique(lst_itemlist):
+    set_testset=set(lst_itemlist) #Liste in ein  Set kopieren, mehrfache Einträge verschwinden.
+    return len(set_testset)==len(lst_itemlist)
+    #mit Schleife wäre Overkill.
+    #set_testset=set() #leeres Set erzeugen
+    #for each_item in lst_itemlist: #alle Werte aus Liste in Set kopieren
+    #    set_testset.add(each_item) #doppelte Elemente verschwinden im Set
+    #return len(set_testset)==len(lst_itemlist)
+    
+        
+    
         
 
 if __name__ == '__main__':# guard
@@ -117,7 +139,7 @@ while(True):
         if number>1:
             print(f'Sum all even numbers: {int(add_all_even_numbers(number))}')
         else:
-            print('Number incompatible!')'''
+            print('Number incompatible!')
     #Übung testen Primzahl
     while True:
         what_number=input('Number to test for prime: ')
@@ -134,3 +156,42 @@ while(True):
                     print(f'Number {what_number} is prime')
                 else:
                     print(f'Number {what_number} is not prime')
+    from data.countries_working_file import countries_data#Liste aus Modul (Datei) importieren
+    #
+    dct_langu={}#dict erzeugen
+    #jetzt das neue Dict mit 'Sprache':Häufigkeit füllen
+    for land in countries_data: #durch alle Länder in Liste iterieren...
+        for langua in land['languages']:    #...dann durch alle Sprachen des Landes iterieren
+            #Nicht vorhandene Sprachen eintragen und auf 1 setzen, vorhandene um eins erhöhen
+            dct_langu[langua]=dct_langu.get(langua,0)+1 #get gibt Wert aus, default 0 wenn Schlüssel nicht vorhanden. Danach +1
+            
+         
+            #komplizierte Methode
+            # if langua not in dct_langu:
+                dct_langu[langua]=1     #Sprache das erste Mal vorhanden, Eintrag machen
+            else:   #Sprache schon vorhanden, hochzählen
+                dct_langu[langua]+=1
+                
+    
+    sortiert=dct_langu.items() #.items() Ergibt eine 'Liste' vom Typ dict_items, diese enthält Tupel aus ('Schlüssel',Wert)
+    #sorted() erzeugt eine sortierte Liste
+    #lambda erzeugt anonyme Funktion, x ist übergebener Wert (ein Tupel), zurückgegeben wird x[1], danach wird sortiert
+    sortiert = sorted(sortiert, key=lambda x: x[1], reverse=True )  #sorted(iterable, key=key, reverse=reverse)
+    
+    #sorted(dict) → sortiert nur Schlüssel, gibt Liste von Schlüsseln zurück
+    #sorted(dict.items()) → sortiert nach Schlüsseln, gibt Liste von Tupeln zurück ('Schlüssel',Wert)
+    #sorted(dict.items(), key=lambda x: x[1]) → sortiert nach Werten an Position [1], gibt Liste von Tupeln
+sortiert=sortiert[:10]#slicing, Eintäge 0 bis 9
+
+for platz, (sprache, anzahl) in enumerate(sortiert, start=1):
+    print(f'Platz {platz}: Sprache: {sprache} Häufigkeit: {anzahl}')
+#Achtung, enumerate wird bei Benutzung geleert!
+
+print(f'Type: {type(sortiert)}')
+'''
+    
+lst_to_test=[1,2,3,5,8]
+if is_unique(lst_to_test):
+    print('list is unique')
+else:
+    print('list is not unique')

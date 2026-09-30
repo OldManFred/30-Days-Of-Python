@@ -8,7 +8,7 @@ if 'Age' in myDict:#Vorher abfragen....
 else:
     print('Ageless')
 print('Nachname',myDict.get('Lastname'))#...oder kein Fehler sondern None bei .get()
-myDict['Adress']={'Street':'Habsburgerstr','Number':4,'Zip':10115}#Hinzufügen, kann Dict. enthalten
+myDict['Adress']={'Street':'Habsburgerstr','Number':4,'Zip':10115}#Hinzufügen, kann auch Dict. enthalten
 print(myDict.get('Adress'))#ganzes Dict auslesen
 print(myDict.get('Adress')['Street'],myDict.get('Adress')['Number'])#Dict_in_Dict zugriff über Schlüssel in innerem Dict
 print('Lenght adress:',len(myDict['Adress']))
@@ -19,7 +19,7 @@ print(myDict.get('Vehicles')[3])#Zugriff auf Liste über Schlüssel, dann Index
 myDict['IsSingle']=False #Wert direkt überschreiben
 print('Single ? ',myDict['IsSingle'])#Zugriff über Schlüssel
 myDict['Haircolour']='grey'
-gepoppt=myDict.pop('Haircolour')#Eintrag entfernen mit pop, nur entfernter Wert wird übergeben
+gepoppt=myDict.pop('Haircolour')#Eintrag entfernen mit pop, nur entfernter Wert wird übergeben ohne Schlüssel
 print('gepoppt: ',gepoppt)
 if 'Haircolour' in myDict:
         print('Grey wolf!')
@@ -40,13 +40,18 @@ myDict.clear()#alle Werte löschen
 print(myDict)
 del myDict  #Dictionary komplett löschen
 print('Kopie: ',cpimyDict)
+print('Dict.keys()')
 lstKeys=cpimyDict.keys()
 print('Type: ',type(lstKeys), 'Keys: ',lstKeys) #Gibt alle Schlüssel zurück mit vorangestelltem dict_keys als eigenen type
 cpimyDict['PrefColour']='DCM2'
+print('Dict.keys()')
 print('Type: ',type(lstKeys), 'Keys: ',lstKeys) #Änderungen im Dict werden automatisch übernommen
+print('dict.values()')
 lstValues=cpimyDict.values()#gleiches für Werte
 print('Type: ',type(lstValues), 'Values: ',lstValues) #Gibt alle Werte zurück mit vorangestelltem dict_values als eigenen type
 cpimyDict['Animal']='Spider'
+print('dict.values()')
 print('Type: ',type(lstValues), 'Values: ',lstValues)  #Änderungen im Dict werden automatisch übernommen
+print('Liste inneres Dict Values')
 lstInnerValues=cpimyDict['Adress'].values()#gleiches für Werte im inneren Dictionary
 print(lstInnerValues)

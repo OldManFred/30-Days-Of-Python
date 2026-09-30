@@ -1,3 +1,4 @@
+#Funktion mit unbestimmter Anzahl Argumente
 import sys
 import os
 pfad = __file__ #aktuellen pfad/filename
@@ -5,7 +6,7 @@ pfad = os.path.abspath(pfad)    #in absoluten Pfad wandeln
 print(f'Pfad to file: {pfad}')
 parent_pfad = os.path.join(pfad,'..','..','..')#zwei Ebenen hochgehen, da ist der Ordner
 parent_pfad=os.path.normpath(parent_pfad)
-print(f'Pfad to add: {parent_pfad}')
+print(f'Pfad to add: {parent_pfad}')#hier is der Ordner data
 sys.path.append(parent_pfad)#Damit Python hier sucht bei import
 from data.countries import countries
 from data.countries_working_file import countries_data
@@ -13,12 +14,14 @@ from data.countries_working_file import countries_data
 def find_info(what_country,*infos):
     if what_country in all_countries:
         print(f'Country: {what_country}')
-        for info in infos:
-            print(f'{info}: {all_countries[what_country].get(info)} ')
+        for info in infos:#durch Argumente iterieren
+            print(f'{info}: {all_countries[what_country].get(info)} ')#Wert zu Schlüssel info holen aus dict all_countries
     else:
         print(f'Country {what_country} not found')
     
-
+def printinfos(mission,testargs):
+    print(f'Infos for {mission} were {testargs}')
+    
 def generate_country_dict(lst_country_data):
     gen_dictionary={}   #Dict erstellen...
     #Aus der Liste mit Dictionaries aller Länder ein Dictionary machen da schneller durchsuchbar
@@ -40,5 +43,9 @@ if __name__ == '__main__': #guard
         if what_info.lower()=='done':
             break
         lst_infos.append(what_info)#infos in Liste sammeln
-    find_info(country,*lst_infos)
+    find_info(country,*lst_infos) # * entpackt die Liste in einzelne Argumente, Anzahl kann verschieden sein
 
+#Argumente für Funktion per Dictionary übergeben
+dct_testDict={'mission':country,'testargs':lst_infos}#dictionary erzeugen
+#printinfos(mission=country,testargs=lst_infos) wird aufgerufen
+printinfos(**dct_testDict)#werte per Dictionary übergeben, **entpackt Dictionary

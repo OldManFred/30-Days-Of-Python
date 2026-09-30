@@ -20,7 +20,7 @@ pers2=('jorge',44)
 pers3=('egon',102)
 print(type(pers3))
 #...und in Liste packen
-suspects=[pers1,pers2,pers3]
+suspects=[pers1,pers2,pers3]#Liste mit drei Tupeln
 for name,age in suspects:
     print(f'{name} is {age} years old')
 #gleich Tupel in Liste packen. Jeder Tupel hat 2 Werte

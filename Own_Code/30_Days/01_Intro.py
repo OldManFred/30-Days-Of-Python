@@ -11,11 +11,11 @@ print(*listtest,sep=' <-> ')# * ist deconstructor
 settest={2,3,7,3} #duplikate werden automatisch entfernt
 print(type(settest))
 print(f"Settest: {settest}")
-a,b,c=settest
+a,b,c=settest#Zuweisung zu Variablen
 print(a)
 print(b)
 print(c)
-settest.add(11)
+settest.add(11)#hinzufügen
 print(f"Settest: add {settest}")
 print('mit sorted in list wandeln')
 settestlist=sorted(settest)
